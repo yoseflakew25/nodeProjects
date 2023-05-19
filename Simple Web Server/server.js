@@ -18,4 +18,19 @@ http.createServer((req, res) => {
     var fileName = path.join(process.cwd(), unescape(uri));
     console.log("loading " + uri + "...");
     var stats
+
+
+    try {
+        stats = fs.lstatSync(fileName);
+    } catch (error) {
+        res.writeHead(404, { 'Content-type': 'text/plain' })
+        res.write('404 not found\n')
+        res.end()
+        return
+    }
+
+
+    if (stats.isFile()) {
+        var mimeType = mimeTypes[path.extname(fileName).split('.').reverse()[0]]
+    }
 })
