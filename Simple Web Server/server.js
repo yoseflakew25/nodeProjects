@@ -13,14 +13,9 @@ const mimeTypes = {
     "js": "text/javascript",
     "json": "application/json",
 }
-
-
-http.createServer(function(req, res) {
-    const pathName = url.parse(req.url).pathname;
-    const filePath = path.join(__dirname, pathName);
-    const extname = path.extname(filePath);
-    const contentType = mimeTypes[extname] || "text/plain";
-    const content = fs.readFileSync(filePath);
-    res.writeHead(200, { 'Content-Type': contentType });
-    res.end(content);
-}).listen(8080);
+http.createServer((req, res) => {
+    var uri = url.parse(req.url).pathname;
+    var fileName = path.join(process.cwd(), unescape(uri));
+    console.log("loading " + uri + "...");
+    var stats
+})
