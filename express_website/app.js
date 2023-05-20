@@ -13,6 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
+app.get('/', (req, res) => {
+    req.end('Hello world')
+});
+
 
 
 
