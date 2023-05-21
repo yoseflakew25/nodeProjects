@@ -48,8 +48,19 @@ app.post('/contact/send', (req, res) => {
         html: '<p>you have a submission with the following details...</p> <ul><li>Name: ' + req.body.name + '</li><li>Email: ' + req.body.email + '</li><li>Message: ' + req.body.message + '</li></ul>'
 
     }
-})
 
+
+
+    transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+            console.log(err);
+            res.redirect('/')
+        } else {
+            console.log('message sent: ' + info.response);
+            res.redirect('/')
+        }
+    })
+})
 
 
 
