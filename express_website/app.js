@@ -22,6 +22,35 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+app.get('/contact', (req, res) => {
+    res.render('contact');
+});
+
+app.get('/about', (req, res) => {
+    res.render('about');
+});
+
+app.post('/contact/send', (req, res) => {
+    const transporter = nodeMailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'jolarohe@gmail.com',
+            pass: '12345678'
+        }
+    })
+
+
+    var mailOptions = {
+        form: "Yosef Lakew <jolarohe@gmail.com>",
+        to: "yoseflakew25@gmail.com",
+        subject: "Website submission ",
+        text: "you have a submission with the following details... Name: " + req.body.name + "Email: " + req.body.email + "Message: " + req.body.message,
+        html: '<p>you have a submission with the following details...</p> <ul><li>Name: ' + req.body.name + '</li><li>Email: ' + req.body.email + '</li><li>Message: ' + req.body.message + '</li></ul>'
+
+    }
+})
+
+
 
 
 
