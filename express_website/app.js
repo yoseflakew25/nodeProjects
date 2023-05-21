@@ -8,13 +8,17 @@ const nodeMailer = require('nodemailer');
 const app = express();
 
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
 app.get('/', (req, res) => {
-    res.end('Hello World!');
+    res.render('index');
 });
 
 
